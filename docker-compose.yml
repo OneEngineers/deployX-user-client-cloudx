@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flightops_frontend
+    env_file:
+      - ./.env
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
