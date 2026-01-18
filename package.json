@@ -12,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "@tailwindcss/vite": "^4.1.14",
     "@vueuse/core": "^13.9.0",
     "@vueuse/router": "^13.9.0",
@@ -29,6 +30,7 @@
     "vue-chartjs": "^5.3.2",
     "vue-router": "^4.6.3",
     "vue3-apexcharts": "^1.9.0",
+    "vuetify": "^3.11.6",
     "zod": "^4.1.12"
   },
   "devDependencies": {
