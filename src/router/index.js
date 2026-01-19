@@ -22,17 +22,18 @@ import Logs from '@/pages/developer/Logs.vue'
 // ==== Error Pages ====
 import Error403 from '@/pages/errors/Error403.vue'
 import Error404 from '@/pages/errors/Error404.vue'
+import DashboardPage from '@/pages/dasboard/DashboardPage.vue'
 
 const routes = [
-  // Default Redirect
+  // {
+  //   path: '/',
+  //   redirect: '/login',
+  // },
   {
     path: '/',
-    redirect: '/login',
+    name: 'Home',
+    component: DashboardPage
   },
-
-  // ================================
-  // Auth Routes
-  // ================================
   {
     path: '/login',
     name: 'Login',
@@ -46,9 +47,6 @@ const routes = [
     meta: { guest: true },
   },
 
-  // ================================
-  // Admin Routes
-  // ================================
   {
     path: '/admin',
     component: AdminLayout,
@@ -79,9 +77,6 @@ const routes = [
     ],
   },
 
-  // ================================
-  // Developer Routes
-  // ================================
   {
     path: '/developer',
     component: DeveloperLayout,
@@ -112,9 +107,6 @@ const routes = [
     ],
   },
 
-  // ================================
-  // Error Routes
-  // ================================
   {
     path: '/403',
     name: 'Error403',
