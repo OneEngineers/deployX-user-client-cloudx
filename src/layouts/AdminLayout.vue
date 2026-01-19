@@ -1,11 +1,11 @@
 <template>
-    <div class="flex min-h-screen">
-        <Sidebar admin />
-        <main class="flex-1 p-6 bg-gray-50">
-            <Navbar />
-            <router-view />
-        </main>
-    </div>
+  <div class="flex min-h-screen">
+    <Sidebar admin />
+    <main class="flex-1 p-6 bg-gray-50">
+      <Navbar />
+      <router-view />
+    </main>
+  </div>
 </template>
 
 <script setup>

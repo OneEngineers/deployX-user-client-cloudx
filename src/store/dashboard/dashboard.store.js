@@ -11,7 +11,7 @@ export const useDashboardStore = defineStore('dashboard', {
     isEdit: false,
     errorMessage: null,
     validationErrors: null,
-    form: { id: null, name: '', gitUrl: '' },
+    form: { id: null, name: '', gitUrl: '' }
   }),
 
   actions: {
@@ -20,7 +20,7 @@ export const useDashboardStore = defineStore('dashboard', {
       this.errorMessage = null
       try {
         const response = await http.get('/deploys', {
-          params: this.searchQuery ? { name: this.searchQuery } : {},
+          params: this.searchQuery ? { name: this.searchQuery } : {}
         })
         this.items = response.data || response || []
       } catch (e) {
@@ -56,7 +56,7 @@ export const useDashboardStore = defineStore('dashboard', {
 
         const payload = {
           name: this.form.name,
-          gitUrl: this.form.gitUrl,
+          gitUrl: this.form.gitUrl
         }
 
         if (this.isEdit) {
@@ -80,7 +80,7 @@ export const useDashboardStore = defineStore('dashboard', {
       if (!confirm('Confirm permanent deletion? This action cannot be undone.')) return
       try {
         await http.delete(`/deploys/${id}`)
-        this.items = this.items.filter((i) => i.id !== id)
+        this.items = this.items.filter(i => i.id !== id)
         this.errorMessage = 'Project deleted successfully'
       } catch (e) {
         console.error('Delete error:', e)
@@ -92,9 +92,9 @@ export const useDashboardStore = defineStore('dashboard', {
       this.loading = true
       this.errorMessage = null
       try {
-        const response = await http.post(`/deploys/${id}/run`)
+        await http.post(`/deploys/${id}/run`)
         this.errorMessage = 'Deployment triggered successfully! Pipeline is running...'
-        await new Promise((r) => setTimeout(r, 1500))
+        await new Promise(r => setTimeout(r, 1500))
         await this.fetchAll()
       } catch (e) {
         console.error('Deploy error:', e)
@@ -102,6 +102,6 @@ export const useDashboardStore = defineStore('dashboard', {
       } finally {
         this.loading = false
       }
-    },
-  },
+    }
+  }
 })

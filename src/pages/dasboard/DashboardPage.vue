@@ -1,35 +1,24 @@
 <script setup>
-import { onMounted } from "vue";
-import { useDashboardStore } from "@/store/dashboard/dashboard.store";
+import { onMounted } from 'vue'
+import { useDashboardStore } from '@/store/dashboard/dashboard.store'
 
-const store = useDashboardStore();
+const store = useDashboardStore()
 
-const getStatusColor = (status) => {
-  if (status === "Healthy" || status === "Success") return "text-emerald-600";
-  if (status === "Warning" || status === "Running") return "text-amber-600";
-  return "text-rose-600";
-};
+const getStatusBadgeClass = status => {
+  if (status === 'Healthy' || status === 'Success')
+    return 'bg-emerald-50 text-emerald-700 border-emerald-200'
+  if (status === 'Warning' || status === 'Running')
+    return 'bg-amber-50 text-amber-700 border-amber-200'
+  return 'bg-rose-50 text-rose-700 border-rose-200'
+}
 
-const getStatusBadgeClass = (status) => {
-  if (status === "Healthy" || status === "Success")
-    return "bg-emerald-50 text-emerald-700 border-emerald-200";
-  if (status === "Warning" || status === "Running")
-    return "bg-amber-50 text-amber-700 border-amber-200";
-  return "bg-rose-50 text-rose-700 border-rose-200";
-};
-
-onMounted(() => store.fetchAll());
+onMounted(() => store.fetchAll())
 </script>
 
 <template>
   <v-app class="bg-neutral-50">
     <!-- Sidebar -->
-    <v-navigation-drawer
-      v-model="store.isSidebarOpen"
-      color="#09090b"
-      theme="dark"
-      width="240"
-    >
+    <v-navigation-drawer v-model="store.isSidebarOpen" color="#09090b" theme="dark" width="240">
       <div class="p-6">
         <div class="flex items-center gap-2 mb-8">
           <div
@@ -37,9 +26,7 @@ onMounted(() => store.fetchAll());
           >
             <v-icon size="20">mdi-rocket-launch</v-icon>
           </div>
-          <h1 class="text-lg font-semibold tracking-tight text-white">
-            DevOps Hub
-          </h1>
+          <h1 class="text-lg font-semibold tracking-tight text-white">DevOps Hub</h1>
         </div>
 
         <v-list density="compact" nav class="space-y-1">
@@ -50,16 +37,8 @@ onMounted(() => store.fetchAll());
             class="rounded-md"
             color="primary"
           />
-          <v-list-item
-            prepend-icon="mdi-chart-box-outline"
-            title="Analytics"
-            class="rounded-md"
-          />
-          <v-list-item
-            prepend-icon="mdi-cog-outline"
-            title="Settings"
-            class="rounded-md"
-          />
+          <v-list-item prepend-icon="mdi-chart-box-outline" title="Analytics" class="rounded-md" />
+          <v-list-item prepend-icon="mdi-cog-outline" title="Settings" class="rounded-md" />
         </v-list>
       </div>
     </v-navigation-drawer>
@@ -67,9 +46,7 @@ onMounted(() => store.fetchAll());
     <!-- Header -->
     <v-app-bar flat class="border-b bg-white/80 backdrop-blur-sm">
       <v-app-bar-nav-icon @click="store.isSidebarOpen = !store.isSidebarOpen" />
-      <v-toolbar-title class="font-semibold text-neutral-900">
-        Deployments
-      </v-toolbar-title>
+      <v-toolbar-title class="font-semibold text-neutral-900"> Deployments </v-toolbar-title>
       <v-spacer />
       <v-btn
         color="neutral-900"
@@ -122,12 +99,8 @@ onMounted(() => store.fetchAll());
               <v-card-item class="pb-3">
                 <div class="flex items-start justify-between mb-2">
                   <div class="flex-1">
-                    <div class="text-xs text-neutral-500 mb-1 font-mono">
-                      #{{ d.id }}
-                    </div>
-                    <v-card-title
-                      class="text-base font-semibold text-neutral-900 px-0"
-                    >
+                    <div class="text-xs text-neutral-500 mb-1 font-mono">#{{ d.id }}</div>
+                    <v-card-title class="text-base font-semibold text-neutral-900 px-0">
                       {{ d.name }}
                     </v-card-title>
                     <div class="text-xs text-neutral-500 mt-1 break-all">
@@ -137,19 +110,17 @@ onMounted(() => store.fetchAll());
                   <div
                     :class="[
                       'px-2.5 py-1 rounded-md text-xs font-medium border whitespace-nowrap ml-2',
-                      getStatusBadgeClass(d.status),
+                      getStatusBadgeClass(d.status)
                     ]"
                   >
-                    {{ d.status || "CREATED" }}
+                    {{ d.status || 'CREATED' }}
                   </div>
                 </div>
               </v-card-item>
 
               <v-divider class="opacity-50" />
 
-              <v-card-actions
-                class="bg-neutral-50/50 px-4 py-3 justify-between"
-              >
+              <v-card-actions class="bg-neutral-50/50 px-4 py-3 justify-between">
                 <div class="flex gap-1">
                   <v-btn
                     icon="mdi-pencil-outline"
@@ -183,18 +154,11 @@ onMounted(() => store.fetchAll());
         </v-row>
 
         <!-- Empty State -->
-        <div
-          v-else
-          class="flex flex-col items-center justify-center py-16 text-center"
-        >
-          <div
-            class="w-16 h-16 bg-neutral-100 rounded-full flex items-center justify-center mb-4"
-          >
+        <div v-else class="flex flex-col items-center justify-center py-16 text-center">
+          <div class="w-16 h-16 bg-neutral-100 rounded-full flex items-center justify-center mb-4">
             <v-icon size="32" color="neutral-400">mdi-package-variant</v-icon>
           </div>
-          <h3 class="text-lg font-semibold text-neutral-900 mb-1">
-            No projects yet
-          </h3>
+          <h3 class="text-lg font-semibold text-neutral-900 mb-1">No projects yet</h3>
           <p class="text-neutral-500 text-sm mb-4">
             Get started by creating your first deployment project
           </p>
@@ -216,14 +180,12 @@ onMounted(() => store.fetchAll());
       <v-card class="rounded-lg">
         <v-card-item class="pb-2">
           <v-card-title class="text-lg font-semibold text-neutral-900">
-            {{ store.isEdit ? "Edit Project" : "New Project" }}
+            {{ store.isEdit ? 'Edit Project' : 'New Project' }}
           </v-card-title>
           <template v-slot:subtitle>
             <span class="text-sm text-neutral-500">
               {{
-                store.isEdit
-                  ? "Update your deployment project"
-                  : "Create a new deployment project"
+                store.isEdit ? 'Update your deployment project' : 'Create a new deployment project'
               }}
             </span>
           </template>
@@ -240,10 +202,7 @@ onMounted(() => store.fetchAll());
               hide-details
               :error="store.validationErrors?.name ? true : false"
             />
-            <div
-              v-if="store.validationErrors?.name"
-              class="text-xs text-rose-600 mt-1"
-            >
+            <div v-if="store.validationErrors?.name" class="text-xs text-rose-600 mt-1">
               {{ store.validationErrors.name }}
             </div>
           </div>
@@ -260,11 +219,7 @@ onMounted(() => store.fetchAll());
 
         <v-card-actions class="px-6 pb-6 pt-2">
           <v-spacer />
-          <v-btn
-            variant="text"
-            class="rounded-lg text-neutral-600"
-            @click="store.dialog = false"
-          >
+          <v-btn variant="text" class="rounded-lg text-neutral-600" @click="store.dialog = false">
             Cancel
           </v-btn>
           <v-btn
@@ -274,7 +229,7 @@ onMounted(() => store.fetchAll());
             :loading="store.loading"
             @click="store.save"
           >
-            {{ store.isEdit ? "Save Changes" : "Create Project" }}
+            {{ store.isEdit ? 'Save Changes' : 'Create Project' }}
           </v-btn>
         </v-card-actions>
       </v-card>

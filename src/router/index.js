@@ -7,7 +7,7 @@ import DeveloperLayout from '@/layouts/DeveloperLayout.vue'
 
 // ==== Auth Pages ====
 import Login from '@/pages/auth/Login.vue'
-import Register from '@/pages/auth/Register.vue'
+import Register from '@/pages/auth/RegisterPage.vue'
 
 // ==== Admin Pages ====
 import AdminDashboard from '@/pages/admin/Dashboard.vue'
@@ -21,7 +21,7 @@ import Logs from '@/pages/developer/Logs.vue'
 
 // ==== Error Pages ====
 import Error403 from '@/pages/errors/Error403.vue'
-import Error404 from '@/pages/errors/Error404.vue'
+import Error404 from '@/pages/errors/Error404Page.vue'
 import DashboardPage from '@/pages/dasboard/DashboardPage.vue'
 
 const routes = [
@@ -38,13 +38,13 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
-    meta: { guest: true },
+    meta: { guest: true }
   },
   {
     path: '/register',
     name: 'Register',
     component: Register,
-    meta: { guest: true },
+    meta: { guest: true }
   },
 
   {
@@ -73,8 +73,8 @@ const routes = [
         name: 'Clusters',
         component: Clusters,
         meta: { title: 'Manage Clusters' }
-      },
-    ],
+      }
+    ]
   },
 
   {
@@ -103,8 +103,8 @@ const routes = [
         name: 'Logs',
         component: Logs,
         meta: { title: 'View Logs' }
-      },
-    ],
+      }
+    ]
   },
 
   {
@@ -118,12 +118,12 @@ const routes = [
     name: 'Error404',
     component: Error404,
     meta: { title: 'Page Not Found' }
-  },
+  }
 ]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes,
+  routes
 })
 
 // ================================
@@ -134,7 +134,11 @@ router.beforeEach(async (to, from, next) => {
 
   // Auto fetch profile (cookie still valid)
   if (!authStore.user) {
-    try { await authStore.fetchProfile() } catch { }
+    try {
+      await authStore.fetchProfile()
+    } catch (error) {
+      console.error('Error fetching profile in router guard:', error)
+    }
   }
 
   const user = authStore.user
@@ -148,9 +152,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (to.meta.guest && user) {
-    return user.role === 'ADMIN'
-      ? next({ name: 'AdminDashboard' })
-      : next({ name: 'MyApps' })
+    return user.role === 'ADMIN' ? next({ name: 'AdminDashboard' }) : next({ name: 'MyApps' })
   }
 
   // Continue to target route
@@ -158,10 +160,8 @@ router.beforeEach(async (to, from, next) => {
 })
 
 // Set dynamic document title
-router.afterEach((to) => {
-  document.title = to.meta.title
-    ? `${to.meta.title} | FlightOps Platform`
-    : 'FlightOps Platform'
+router.afterEach(to => {
+  document.title = to.meta.title ? `${to.meta.title} | FlightOps Platform` : 'FlightOps Platform'
 })
 
 export default router

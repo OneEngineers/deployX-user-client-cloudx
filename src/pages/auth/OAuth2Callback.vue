@@ -5,11 +5,9 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useAuthStore } from '@/store/authStore'
-import { useRouter } from 'vue-router'
 import axiosInstance from '@/api/axiosInstance'
 
 const auth = useAuthStore()
-const router = useRouter()
 
 onMounted(async () => {
   try {
