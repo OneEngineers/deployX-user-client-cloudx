@@ -10,7 +10,7 @@ import prettier from 'eslint-config-prettier'
 export default defineConfig([
   {
     name: 'app/files-to-lint',
-    files: ['**/*.{vue,js,mjs,jsx}'],
+    files: ['**/*.{vue,js,mjs,jsx}']
   },
 
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
@@ -18,9 +18,9 @@ export default defineConfig([
   {
     languageOptions: {
       globals: {
-        ...globals.browser,
-      },
-    },
+        ...globals.browser
+      }
+    }
   },
 
   js.configs.recommended,
@@ -28,13 +28,13 @@ export default defineConfig([
 
   {
     ...pluginPlaywright.configs['flat/recommended'],
-    files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],
+    files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}']
   },
 
   {
     ...pluginVitest.configs.recommended,
-    files: ['src/**/__tests__/*'],
+    files: ['src/**/__tests__/*']
   },
   prettier,
-  skipFormatting,
+  skipFormatting
 ])

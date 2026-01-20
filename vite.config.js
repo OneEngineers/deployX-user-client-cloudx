@@ -10,13 +10,10 @@ export default defineConfig({
     port: 3000,
     allowedHosts: ['cloudx-testing.domrey.online']
   },
-  plugins: [
-    vue(),
-    tailwindcss()
-  ],
+  plugins: [vue(), tailwindcss()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
-    },
-  },
+    }
+  }
 })
