@@ -67,8 +67,7 @@ jobs:
         with:
           node-version: '20'
       - run: npm install
-      - run: echo "Run Build"
-      # - run: npm run build
+      - run: npm run build
 
   confirm:
     name: ready check
