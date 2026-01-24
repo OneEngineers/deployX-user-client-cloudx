@@ -2,27 +2,26 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/store/authStore'
 
 // ==== Layouts ====
-import AdminLayout from '@/layouts/AdminLayout.vue'
-import DeveloperLayout from '@/layouts/DeveloperLayout.vue'
+const AdminLayout = () => import('@/layouts/AdminLayout.vue')
+const DeveloperLayout = () => import('@/layouts/DeveloperLayout.vue')
 
 // ==== Auth Pages ====
-import Login from '@/pages/auth/Login.vue'
-import Register from '@/pages/auth/RegisterPage.vue'
+const Login = () => import('@/pages/auth/LoginPage.vue')
+const Register = () => import('@/pages/auth/RegisterPage.vue')
 
 // ==== Admin Pages ====
-import AdminDashboard from '@/pages/admin/Dashboard.vue'
-import Users from '@/pages/admin/Users.vue'
-import Clusters from '@/pages/admin/Clusters.vue'
+const AdminDashboard = () => import('@/pages/admin/AdminDashboard.vue')
+const Users = () => import('@/pages/admin/AdminUsers.vue')
 
 // ==== Developer Pages ====
-import MyApps from '@/pages/developer/MyApps.vue'
-import Deployments from '@/pages/developer/Deployments.vue'
-import Logs from '@/pages/developer/Logs.vue'
+const MyApps = () => import('@/pages/developer/MyApps.vue')
+const Deployments = () => import('@/pages/developer/DeployDeveloper.vue')
+const Logs = () => import('@/pages/developer/LogsDeveloper.vue')
 
 // ==== Error Pages ====
-import Error403 from '@/pages/errors/Error403.vue'
-import Error404 from '@/pages/errors/Error404Page.vue'
-import DashboardPage from '@/pages/dasboard/DashboardPage.vue'
+const Error403 = () => import('@/pages/errors/Error403Page.vue')
+const Error404 = () => import('@/pages/errors/Error404Page.vue')
+const DashboardPage = () => import('@/pages/dasboard/DashboardPage.vue')
 
 const routes = [
   // {
@@ -67,12 +66,6 @@ const routes = [
         name: 'Users',
         component: Users,
         meta: { title: 'Manage Users' }
-      },
-      {
-        path: 'clusters',
-        name: 'Clusters',
-        component: Clusters,
-        meta: { title: 'Manage Clusters' }
       }
     ]
   },
