@@ -1,6 +1,14 @@
 {
   "recommendations": [
     "Vue.volar",
+<<<<<<< HEAD
     "esbenp.prettier-vscode"
+=======
+    "vitest.explorer",
+    "ms-playwright.playwright",
+    "dbaeumer.vscode-eslint",
+    "EditorConfig.EditorConfig",
+    "prettier.prettier-vscode"
+>>>>>>> dafb482343956a8fc6c5e244410ca99d50671bf7
   ]
 }
