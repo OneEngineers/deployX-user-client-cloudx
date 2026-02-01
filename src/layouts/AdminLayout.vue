@@ -9,6 +9,6 @@
 </template>
 
 <script setup>
-import Sidebar from '@/components/common/Sidebar.vue'
-import Navbar from '@/components/common/Navbar.vue'
+import Sidebar from '@/components/common/SidebarComponent.vue'
+import Navbar from '@/components/common/NavbarComponent.vue'
 </script>

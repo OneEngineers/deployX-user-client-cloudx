@@ -10,5 +10,8 @@
   },
   "editor.formatOnSave": true,
   "eslint.validate": ["javascript", "vue"],
-  "editor.defaultFormatter": "prettier.prettier-vscode"
+  "editor.defaultFormatter": "prettier.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
