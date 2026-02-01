@@ -7,8 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-<<<<<<< HEAD
-    "format": "prettier --write --experimental-cli src/"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write --experimental-cli .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
@@ -22,42 +24,7 @@
     "@vitejs/plugin-vue": "^6.0.3",
     "prettier": "3.8.1",
     "vite": "^7.3.1",
-    "vite-plugin-vue-devtools": "^8.0.5"
-  },
-  "engines": {
-    "node": "^20.19.0 || >=22.12.0"
-=======
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write --experimental-cli .",
-    "format:check": "prettier --check ."
-  },
-  "dependencies": {
-    "@mdi/font": "^7.4.47",
-    "@tailwindcss/vite": "^4.1.14",
-    "@vueuse/core": "^13.9.0",
-    "@vueuse/router": "^13.9.0",
-    "apexcharts": "^5.3.5",
-    "axios": "^1.12.2",
-    "chart.js": "^4.5.1",
-    "dayjs": "^1.11.18",
-    "element-plus": "^2.11.5",
-    "js-cookie": "^3.0.5",
-    "lodash": "^4.17.21",
-    "pinia": "^3.0.3",
-    "vee-validate": "^4.15.1",
-    "vue": "^3.5.22",
-    "vue-chartjs": "^5.3.2",
-    "vue-router": "^4.6.3",
-    "vue3-apexcharts": "^1.9.0",
-    "vuetify": "^3.11.6",
-    "zod": "^4.1.12"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.2",
-    "@iconify/vue": "^5.0.0",
-    "@playwright/test": "^1.57.0",
-    "@vitejs/plugin-vue": "^6.0.3",
+    "vite-plugin-vue-devtools": "^8.0.5",
     "@vitest/eslint-plugin": "^1.6.5",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/test-utils": "^2.4.6",
@@ -65,12 +32,9 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-playwright": "^2.4.0",
     "eslint-plugin-vue": "^10.7.0",
-    "globals": "^17.0.0",
-    "jsdom": "^27.4.0",
-    "prettier": "^3.7.4",
-    "vite": "^7.1.7",
-    "vite-plugin-vue-devtools": "^8.0.2",
-    "vitest": "^4.0.16"
->>>>>>> dafb482343956a8fc6c5e244410ca99d50671bf7
+    "@playwright/test": "^1.57.0"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
   }
 }
