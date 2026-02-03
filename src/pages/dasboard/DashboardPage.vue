@@ -22,7 +22,7 @@ onMounted(() => store.fetchAll())
       <div class="p-6">
         <div class="flex items-center gap-2 mb-8">
           <div
-            class="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-md flex items-center justify-center"
+            class="w-8 h-8 from-violet-500 to-purple-600 rounded-md flex items-center justify-center"
           >
             <v-icon size="20">mdi-rocket-launch</v-icon>
           </div>

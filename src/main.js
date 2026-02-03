@@ -22,8 +22,9 @@ import 'element-plus/dist/index.css'
 import '@mdi/font/css/materialdesignicons.css'
 
 const app = createApp(App)
+export const pinia = createPinia()
 
-app.use(createPinia())
+app.use(pinia)
 app.use(router)
 app.use(vuetify)
 app.use(ElementPlus)

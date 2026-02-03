@@ -23,11 +23,12 @@ const Error403 = () => import('@/pages/errors/Error403Page.vue')
 const Error404 = () => import('@/pages/errors/Error404Page.vue')
 const DashboardPage = () => import('@/pages/dasboard/DashboardPage.vue')
 
+import state from '@/main'
 const routes = [
-  // {
-  //   path: '/',
-  //   redirect: '/login',
-  // },
+  {
+    path: '/',
+    redirect: '/login'
+  },
   {
     path: '/',
     name: 'Home',
@@ -119,40 +120,14 @@ const router = createRouter({
   routes
 })
 
-// ================================
-// Navigation Guards
-// ================================
-router.beforeEach(async (to, from, next) => {
-  const authStore = useAuthStore()
+router.beforeEach(to => {
+  const authStore = useAuthStore(state)
 
-  // Auto fetch profile (cookie still valid)
-  if (!authStore.user) {
-    try {
-      await authStore.fetchProfile()
-    } catch (error) {
-      console.error('Error fetching profile in router guard:', error)
-    }
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    return '/login'
   }
-
-  const user = authStore.user
-
-  if (to.meta.requiresAuth && !user) {
-    return next({ name: 'Login' })
-  }
-
-  if (to.meta.role && user?.role !== to.meta.role) {
-    return next({ name: 'Error403' })
-  }
-
-  if (to.meta.guest && user) {
-    return user.role === 'ADMIN' ? next({ name: 'AdminDashboard' }) : next({ name: 'MyApps' })
-  }
-
-  // Continue to target route
-  next()
 })
 
-// Set dynamic document title
 router.afterEach(to => {
   document.title = to.meta.title ? `${to.meta.title} | FlightOps Platform` : 'FlightOps Platform'
 })
