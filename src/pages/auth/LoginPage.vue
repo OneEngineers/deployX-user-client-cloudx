@@ -106,7 +106,7 @@
           <button
             type="submit"
             :disabled="loading || !isFormValid"
-            class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-lg flex items-center justify-center gap-2"
+            class="w-full py-3 px-4 from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-lg flex items-center justify-center gap-2"
           >
             <Icon v-if="loading" icon="mdi:loading" class="text-xl animate-spin" />
             <span>{{ loading ? 'Signing in...' : 'Sign In' }}</span>
@@ -127,7 +127,7 @@
         <div class="grid grid-cols-2 gap-3">
           <button
             type="button"
-            @click="handleGitHubLogin"
+            @click="login"
             class="flex items-center justify-center gap-2 px-4 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <Icon icon="mdi:github" class="text-xl text-gray-900" />
@@ -159,7 +159,6 @@ import { ref, computed } from 'vue'
 import { useAuthStore } from '@/store/authStore'
 import { useRouter } from 'vue-router'
 import { Icon } from '@iconify/vue'
-import { loginWithGitHub } from '@/api/authService'
 
 const auth = useAuthStore()
 const router = useRouter()
@@ -172,6 +171,12 @@ const rememberMe = ref(false)
 const loginError = ref('')
 const emailError = ref('')
 const passwordError = ref('')
+
+const login = () => {
+  const baseUrl = 'http://localhost:8080/oauth2/authorize/github'
+  const redirectUri = 'http://localhost:5173/oauth2/redirect'
+  window.location.href = `${baseUrl}?redirect_uri=${redirectUri}`
+}
 
 const isFormValid = computed(() => {
   return email.value && password.value && !emailError.value && !passwordError.value
@@ -223,9 +228,9 @@ const onLogin = async () => {
   }
 }
 
-const handleGitHubLogin = () => {
-  loginWithGitHub()
-}
+// const handleGitHubLogin = () => {
+//   loginWithGitHub()
+// }
 </script>
 
 <style scoped>
