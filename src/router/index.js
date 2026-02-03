@@ -1,29 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/store/authStore'
 
-// ==== Layouts ====
-const AdminLayout = () => import('@/layouts/AdminLayout.vue')
 const DeveloperLayout = () => import('@/layouts/DeveloperLayout.vue')
 
 // ==== Auth Pages ====
 const Login = () => import('@/pages/auth/LoginPage.vue')
 const Register = () => import('@/pages/auth/RegisterPage.vue')
 
-// ==== Admin Pages ====
-const AdminDashboard = () => import('@/pages/admin/AdminDashboard.vue')
-const Users = () => import('@/pages/admin/AdminUsers.vue')
-
 // ==== Developer Pages ====
 const MyApps = () => import('@/pages/developer/MyApps.vue')
 const Deployments = () => import('@/pages/developer/DeployDeveloper.vue')
-const Logs = () => import('@/pages/developer/LogsDeveloper.vue')
 
 // ==== Error Pages ====
 const Error403 = () => import('@/pages/errors/Error403Page.vue')
 const Error404 = () => import('@/pages/errors/Error404Page.vue')
 const DashboardPage = () => import('@/pages/dasboard/DashboardPage.vue')
 
-import state from '@/main'
 const routes = [
   {
     path: '/',
@@ -48,30 +40,6 @@ const routes = [
   },
 
   {
-    path: '/admin',
-    component: AdminLayout,
-    redirect: '/admin/dashboard',
-    meta: {
-      requiresAuth: true,
-      role: 'ADMIN'
-    },
-    children: [
-      {
-        path: 'dashboard',
-        name: 'AdminDashboard',
-        component: AdminDashboard,
-        meta: { title: 'Admin Dashboard' }
-      },
-      {
-        path: 'users',
-        name: 'Users',
-        component: Users,
-        meta: { title: 'Manage Users' }
-      }
-    ]
-  },
-
-  {
     path: '/developer',
     component: DeveloperLayout,
     redirect: '/developer/apps',
@@ -91,12 +59,6 @@ const routes = [
         name: 'Deployments',
         component: Deployments,
         meta: { title: 'App Deployments' }
-      },
-      {
-        path: 'logs',
-        name: 'Logs',
-        component: Logs,
-        meta: { title: 'View Logs' }
       }
     ]
   },
@@ -121,9 +83,9 @@ const router = createRouter({
 })
 
 router.beforeEach(to => {
-  const authStore = useAuthStore(state)
+  const auth = useAuthStore()
 
-  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+  if (to.meta.requiresAuth && !auth.isAuthenticated) {
     return '/login'
   }
 })
