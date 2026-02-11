@@ -15,6 +15,7 @@ onMounted(async () => {
       await authStore.initializeAuth(token)
       router.push('/')
     } catch (err) {
+      router.push(`/login?error=auth_failed&message=${encodeURIComponent(err.message || 'Authentication failed')}`)
       // router.push('/login?error=auth_failed')
       console.error('Authentication failed', err)
     }

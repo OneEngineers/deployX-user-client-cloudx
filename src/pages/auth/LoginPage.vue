@@ -173,8 +173,8 @@ const emailError = ref('')
 const passwordError = ref('')
 
 const login = () => {
-  const baseUrl = 'http://localhost:8080/oauth2/authorize/github'
-  const redirectUri = 'http://localhost:5173/oauth2/redirect'
+  const baseUrl = `${import.meta.env.VITE_BACKEND_URL}/oauth2/authorization/github`
+  const redirectUri = `${import.meta.env.VITE_BACKEND_URL}/oauth2/redirect`
   window.location.href = `${baseUrl}?redirect_uri=${redirectUri}`
 }
 
@@ -228,9 +228,6 @@ const onLogin = async () => {
   }
 }
 
-// const handleGitHubLogin = () => {
-//   loginWithGitHub()
-// }
 </script>
 
 <style scoped>
