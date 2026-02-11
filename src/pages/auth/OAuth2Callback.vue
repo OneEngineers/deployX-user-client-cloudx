@@ -11,7 +11,6 @@ const auth = useAuthStore()
 
 onMounted(async () => {
   try {
-    // Fetch user info from backend using cookie
     const res = await axiosInstance.get('/api/auth/me')
     auth.setUser(res.data)
   } catch (e) {

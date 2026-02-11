@@ -1,12 +1,12 @@
 <template>
   <div
-    class="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4"
+    class="flex min-h-screen items-center justify-center bg-linear-to-br from-blue-50 via-white to-purple-50 px-4"
   >
     <div class="w-full max-w-md">
       <!-- Logo/Brand Section -->
       <div class="text-center mb-8">
         <div
-          class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl mb-4 shadow-lg"
+          class="inline-flex items-center justify-center w-16 h-16 bg-linear-to-br from-blue-600 to-purple-600 rounded-2xl mb-4 shadow-lg"
         >
           <Icon icon="mdi:lock-outline" class="text-white text-3xl" />
         </div>
@@ -96,7 +96,7 @@
             v-if="loginError"
             class="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3"
           >
-            <Icon icon="mdi:alert-circle" class="text-red-600 text-xl flex-shrink-0 mt-0.5" />
+            <Icon icon="mdi:alert-circle" class="text-red-600 text-xl shrink-0 mt-0.5" />
             <div class="flex-1">
               <p class="text-sm text-red-800 font-medium">{{ loginError }}</p>
             </div>
